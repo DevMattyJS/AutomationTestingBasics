@@ -1,7 +1,10 @@
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class RadioHandlingTest {
@@ -18,11 +21,16 @@ public class RadioHandlingTest {
 
     @Test
     public void test() {
-
+        driver.get(BASE_URL);
+        WebElement maleRadioButton = driver.findElement(By.xpath("//input[@value='wurst']"));
+        WebElement femaleRadioButton = driver.findElement(By.xpath("//input[@value='conchita']"));
+        maleRadioButton.click();
+        Assert.assertTrue(maleRadioButton.isSelected());
+        Assert.assertFalse(femaleRadioButton.isSelected());
     }
 
     @After
     public void tearDown() {
-
+        driver.close();
     }
  }
